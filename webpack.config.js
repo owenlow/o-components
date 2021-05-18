@@ -1,6 +1,19 @@
 const path = require("path");
+const webpack = require("webpack");
 
 const LIBRARY_NAME = "o-components";
+
+const plugins = [];
+let extension = ".js";
+
+if (process.env.WEBPACK_ENV === "build") {
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+    })
+  );
+  extension = ".min.js";
+}
 
 module.exports = {
   entry: "./src/index.ts",
@@ -18,7 +31,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "lib"),
-    filename: `${LIBRARY_NAME}.js`,
+    filename: `${LIBRARY_NAME}.${extension}`,
     library: {
       name: LIBRARY_NAME,
       type: "umd",
@@ -27,4 +40,5 @@ module.exports = {
   externals: {
     react: "react",
   },
+  plugins,
 };

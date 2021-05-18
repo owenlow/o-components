@@ -1,7 +1,8 @@
 {
   "name": "o-components",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/o-components.js",
+  "module": "src/index.ts",
   "repository": "git@github.com:owenlow/o-components.git",
   "author": "Owen Royall-Kahin <oroyallkahin@gmail.com>",
   "license": "MIT",
@@ -31,7 +32,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "webpack",
+    "build": "WEBPACK_ENV=build webpack",
     "prepare": "husky install"
   },
   "lint-staged": {
